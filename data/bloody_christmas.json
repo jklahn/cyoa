@@ -1,0 +1,20 @@
+{"pages":  
+[
+  {
+    "name": "start",
+    "title": "Living Room",
+	"body": " \"...dashing through the snow... on one horse open sla--... laughing all the way... muhuhahaHAAA!...\" \nYou groggily come-to with 'Jingle Bells' draining into your ears.  A blurry living room around you gradually comes into focus.  You're lying on a couch, facing a fireplace.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.\n",
+      "short_description": "You are in the living room. To your left is a hallway.  Behind you is a kitchen.",
+	"prompt": "Where would you like to go to next?",
+	"linked_pages": ["hallway", "kitchen"]
+  },
+  {
+    "name": "hallway",
+    "title": "Hallway",
+	"body": "You are in hallway that is dimly lit by the fireplace in the living room behind you. Immediately yo your left are some dark, creepy stairs.  In front of you is a door.  The door appears to lead to the outside but it's dark out there.",
+	"short_description": "You are in the hallway. To your left are stairs.  In front of you is a door leading outside.  Behind you is the living room.",
+	"prompt": "Where would you like to go to next?",
+	"linked_pages": ["start", "stairs", "front_door"]
+  }
+]
+}
