@@ -3,8 +3,16 @@
   {
     "name": "start",
     "title": "Living Room",
-	"body": " \"...dashing through the snow... on one horse open sla--... laughing all the way... muhuhahaHAAA!...\" \nYou groggily come-to with 'Jingle Bells' draining into your ears.  A blurry living room around you gradually comes into focus.  You're lying on a couch, facing a fireplace.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.\n",
-      "short_description": "You are in the living room. To your left is a hallway.  Behind you is a kitchen.",
+	"body": "\"dashing through the snow...\"\n\"on a one horse open slay...\"\n\"over the fields we goooo...\"\n\"laughing all the way... MU HA HA!...\" \n\nYou groggily come-to with 'Jingle Bells' draining into your ears.  A blurry living room around you gradually comes into focus.  You're lying on a couch, facing a fireplace.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.  You feel something cold and wet start to run down your forehead.  Wiping it away from your brow you discover it's blood.  That probably explains the splitting headache you have.\n",
+    "short_description": "You are in the living room. To your left is a hallway.  Behind you is a kitchen.",
+	"prompt": "Where would you like to go to next?",
+	"linked_pages": ["hallway", "kitchen", "sleep"]
+  },
+  {
+    "name": "sleep",
+    "title": "Back to sleep",
+	"body": " \"...dashing through the snow... on one horse open slay... over the fields we goooo... laughing all the way... HA HA HA!\" \nYou groggily come-to with 'Jingle Bells' draining into your ears.  A blurry living room around you gradually comes into focus.  You're lying on a couch, facing a fireplace.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.\n",
+    "short_description": "You are in the living room. To your left is a hallway.  Behind you is a kitchen.",
 	"prompt": "Where would you like to go to next?",
 	"linked_pages": ["hallway", "kitchen"]
   },
@@ -15,6 +23,14 @@
 	"short_description": "You are in the hallway. To your left are stairs.  In front of you is a door leading outside.  Behind you is the living room.",
 	"prompt": "Where would you like to go to next?",
 	"linked_pages": ["start", "stairs", "front_door"]
+  },
+  {
+    "name": "kitchen",
+    "title": "Kitchen",
+	"body": "",
+    "short_description": "",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["hallway", "kitchen"]
   }
 ]
 }
