@@ -5,7 +5,7 @@ game_data_path = 'data/bloody_christmas.json'
 
 
 class Page(object):
-    def __init__(self, page, max_line_length=90):
+    def __init__(self, page, max_line_length=80):
         self.max_line_length = max_line_length
         self.name = page["name"]
         self.title = page["title"]
@@ -22,7 +22,7 @@ class Page(object):
             if len(string) > self.max_line_length:  # if the string is greater than the max allowed per line
                 line = ""
                 for word in string.split():  # split string into words if greater than max
-                    if len(line) > self.max_line_length:
+                    if len(line) + len(word) > self.max_line_length:
                         formatted_text += "\n" + line
                         line = "" + word + " "
                     else:
