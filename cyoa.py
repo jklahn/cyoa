@@ -16,9 +16,24 @@ class Page(object):
         self.visit_counter = 0
 
     def wrap_text(self, text):
-        pattern = '.{1,' + str(self.max_line_length) + '}(?:\s+|$)'
-        formated_text = '\n'.join(line.strip() for line in findall(pattern, text))
-        return formated_text
+        formatted_text = ""
+        for string in text.split("\n"):
+            if len(string) > self.max_line_length:  # if the string is greater than the max allowed per line
+                line = ""
+                for word in string.split():  # split string into words if greater than max
+                    if len(line) > self.max_line_length:
+                        formatted_text += "\n" + line
+                        line = "" + word + " "
+                    else:
+                        line += word + " "
+
+                formatted_text += "\n" + line
+            else:
+                string += "\n"  # add the new line back
+                formatted_text += string
+
+        return formatted_text
+
 
 class Book(object):
     def __init__(self, game_data):
