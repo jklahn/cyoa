@@ -29,10 +29,27 @@
   {
     "name": "kitchen",
     "title": "Kitchen",
-	"body": "",
+	"body": "Just a normal kitchen - albeit the scattered blood stains on walls and cabinets.  'What happened in here?  Looks like pig was butchered in here...' you think to yourself.\nAhead is what appears to be a beadroom.  To your left is a door that leads outside to a deck.  To your right is a hallway.  Behind you is the living room.",
     "short_description": "",
     "prompt": "Where would you like to go to next?",
-	"linked_pages": ["start"]
+	"linked_pages": ["start", "hallway", "downstairs_bedroom", "deck_door"]
+  },
+  {
+    "name": "downstairs_bedroom",
+    "title": "Bedroom",
+	"body": "The bedroom is surprisingly well lit by large open windows and a full moon outside.  Still, you flip the lightswitch to try and get some additional light, but nothing happens.  'Power must be out.' you think to yourself. There's not much of interest in this room save for a flashlight that's laying on the night stand.  This bedroom doesn't lead anywhere.",
+    "short_description": "You're in the bedroom.  Behind you is the kitchen.",
+    "prompt": "What's next?",
+	"linked_pages": ["kitchen", "bedroom_add_flashlight"]
+  },
+  {
+    "name": "bedroom_add_flashlight",
+    "title": "Get Flashlight",
+	"body": "You grab the flashlight and inspect it.  \"Maglite ML150LR.,\" you read the label aloud.  You flip it on and light instantly floods the bedroom.  Then you flip it back off to conserve the batteries.",
+    "short_description": "You're in the bedroom.  Behind you is the kitchen.",
+    "prompt": "Where to next?",
+	"linked_pages": ["kitchen"],
+	"add_to_inventory": "flashlight"
   },
   {
     "name": "up_stairs",
@@ -45,11 +62,19 @@
   {
     "name": "front_door",
     "title": "Front door",
-	"body": "You were viciously mauled by something in the darkness.  You desperately try to crawl in the house, while the pain intensifies.  Things go blurry as you succumb to your injuries...\n",
+	"body": "You are viciously mauled by something in the darkness.  You desperately try to crawl in the house, while the pain exponentially intensifies.  Things go blurry as you succumb to your injuries...\n",
     "short_description": "",
     "prompt": "Where would you like to go to next?",
 	"linked_pages": ["start", "up_stairs", "front_door"],
 	"change_health": -100
+  },
+  {
+    "name": "deck_door",
+    "title": "Deck Door",
+	"body": "",
+    "short_description": "",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["start", "hallway", "downstairs_bedroom", "deck_door"]
   }
 ],
 

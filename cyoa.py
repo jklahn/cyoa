@@ -1,7 +1,5 @@
-# import the game data
 from json import load
-import sys
-game_data_path = 'data/bloody_christmas.json'
+game_data_path = 'data/bloody_christmas.json'  # TODO: Change this import first json file in directory
 
 
 class Page(object):
@@ -14,7 +12,10 @@ class Page(object):
         self.short_description = page["short_description"]
         self.linked_pages = page["linked_pages"]
         self.visit_counter = 0
-        self.change_health = page.get("change_health")
+        self.change_health = page.get("change_health")  # Get the health change for the page if it exists
+        self.add_to_inventory = page.get("add_to_inventory")
+        self.check_in_inventory = page.get("check_in_inventory")
+
 
     def wrap_text(self, text):
         formatted_text = ""
@@ -43,6 +44,7 @@ class Book(object):
         self.selection_range = 0
         self.selection = None
         self.next_page = None
+        self.prev_page = None
 
         # add pages to the book
         for page in game_data["pages"]:
@@ -51,15 +53,18 @@ class Book(object):
         # set state
         self.start_health = game_data["starting_health"]
         self.health = self.start_health
+        self.inventory = []
 
     def read(self):
         while True:
             self.read_current_page()
             if self.check_health() is False:  # Start over if dead
                 break
+            self.check_inventory()
             self.read_prompt()
             self.get_input_validate_selection()
             self.next_page = self.current_page.linked_pages[int(self.selection)]
+            self.prev_page = self.current_page
             self.nav_to_page(self.next_page)
 
     def get_input_validate_selection(self):
@@ -131,6 +136,23 @@ class Book(object):
             input("Press Enter to restart...")
             return False
 
+    def check_inventory(self):
+        if self.current_page.add_to_inventory:
+            self.inventory.append(self.current_page.add_to_inventory)  # add to inventory
+            # remove the link to inventory page from the pevious page so it can't be accessed
+            self.prev_page.linked_pages.remove(self.current_page.name)
+            print("\nCurrent Inventory:")
+            print(self.inventory)
+            print("\n")
+            self.nav_to_page(self.prev_page.name)  # go back to the previous pag
+
+        if self.current_page.remove_from_inventory: # remove from inventory if present
+            if self.current_page.remove_from_inventory in self.inventory:
+                self.inventory.remove(self.current_page.remove_from_inventory)
+
+        if self.current_page.check_in_inventory:  # use alt page links if present in inventory
+            if self.current_page.check_in_inventory in self.inventory:
+
 
 if __name__ == '__main__':
     while True:
@@ -140,5 +162,3 @@ if __name__ == '__main__':
         book = Book(game_data)
         book.nav_to_page("start")
         book.read()
-
-
