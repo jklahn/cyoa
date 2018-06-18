@@ -6,7 +6,8 @@
 	"body": "\"dashing through the snow...\"\n\"on a one horse open slay...\"\n\"over the fields we goooo...\"\n\"laughing all the way... MU HA HA!...\"\nYou groggily come-to with 'Jingle Bells' draining into your ears.  A blurry living room around you gradually comes into focus.  You're lying on a couch, facing a fireplace.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.  You feel something cold and wet start to run down your forehead.  Wiping it away from your brow you discover it's blood.  That probably explains the splitting headache you have.\n",
     "short_description": "You are in the living room. To your left is a hallway.  Behind you is a kitchen.",
 	"prompt": "Where would you like to go to next?",
-	"linked_pages": ["hallway", "kitchen", "sleep"]
+	"linked_pages": ["hallway", "kitchen", "sleep"],
+	"starting_health": 90
   },
   {
     "name": "sleep",
@@ -14,7 +15,8 @@
 	"body": " \"...dashing through the snow... on one horse open slay... over the fields we goooo... laughing all the way... HA HA HA!\" \nYou come-to with 'Jingle Bells' draining into your ears.  Is this song on repeat??  A blurry living room around you gradually comes into focus.  You feel a little better as your head doesn't hurt as much.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.\n",
     "short_description": "You are in the living room. To your left is a hallway.  Behind you is a kitchen.",
 	"prompt": "Where would you like to go to next?",
-	"linked_pages": ["hallway", "kitchen"]
+	"linked_pages": ["hallway", "kitchen"],
+	"change_health": 10
   },
   {
     "name": "hallway",
@@ -46,7 +48,10 @@
 	"body": "",
     "short_description": "",
     "prompt": "Where would you like to go to next?",
-	"linked_pages": ["hallway"]
+	"linked_pages": ["hallway"],
+	"change_health": -100
   }
-]
+],
+
+"starting_health": 90
 }

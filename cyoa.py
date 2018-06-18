@@ -1,5 +1,6 @@
 # import the game data
 from json import load
+import sys
 game_data_path = 'data/bloody_christmas.json'
 
 
@@ -13,6 +14,7 @@ class Page(object):
         self.short_description = page["short_description"]
         self.linked_pages = page["linked_pages"]
         self.visit_counter = 0
+        self.change_health = page.get("change_health")
 
     def wrap_text(self, text):
         formatted_text = ""
@@ -46,9 +48,15 @@ class Book(object):
         for page in game_data["pages"]:
             self.pages[page["name"]] = Page(page)
 
+        # set state
+        self.start_health = game_data["starting_health"]
+        self.health = self.start_health
+
     def read(self):
         while True:
             self.read_current_page()
+            self.check_health()
+            self.read_prompt()
             self.get_input_validate_selection()
             self.next_page = self.current_page.linked_pages[int(self.selection)]
             self.nav_to_page(self.next_page)
@@ -70,7 +78,6 @@ class Book(object):
                 print("Invalid number")
                 continue
 
-
     def nav_to_page(self, page_name):
         self.current_page = self.pages[page_name]
 
@@ -80,11 +87,33 @@ class Book(object):
         else:
             print(self.current_page.body)
 
+    def read_prompt(self):
         print(self.current_page.prompt)
         self.current_page.visit_counter += 1
 
         for index, link in enumerate(self.current_page.linked_pages):
             print(self.pages[link].title + " [" + str(index + 1) + "]")
+
+    def check_health(self):
+        if self.current_page.change_health:  # add or subtract health
+            if self.current_page.change_health > 0:
+                print("+" + str(self.current_page.change_health) + " health")
+
+            else:
+                print(str(self.current_page.change_health) + " health")
+
+            self.health += self.current_page.change_health
+
+            if self.health > 100:  # Can't let health go over 100
+                self.health = 100
+
+        if self.health < 0:  # Game Over if your health goes below 0
+            print("Your health has dropped below 0.\n GAME OVER\n")
+            input("Press Enter to restart...")
+            self.health = self.start_health
+            self.nav_to_page("start")
+
+        print("Current health: " + str(self.health))
 
 
 if __name__ == '__main__':
