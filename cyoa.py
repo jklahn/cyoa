@@ -55,7 +55,8 @@ class Book(object):
     def read(self):
         while True:
             self.read_current_page()
-            self.check_health()
+            if self.check_health() is False:  # Start over if dead
+                break
             self.read_prompt()
             self.get_input_validate_selection()
             self.next_page = self.current_page.linked_pages[int(self.selection)]
@@ -82,10 +83,28 @@ class Book(object):
         self.current_page = self.pages[page_name]
 
     def read_current_page(self):
+        self.print_title()
         if self.current_page.visit_counter > 0:
             print(self.current_page.short_description)
         else:
             print(self.current_page.body)
+
+    def print_title(self):
+        title_length = len(self.current_page.title)
+        top_and_bottom_bar_str = ""
+        spaces_between_title_str = ""
+        top_and_bottom_bar_length = int(self.current_page.max_line_length)
+        amount_spaces_between_title = int((top_and_bottom_bar_length - title_length - 2) / 2)
+        for i in range(0, top_and_bottom_bar_length):
+            top_and_bottom_bar_str += "*"
+
+        for i in range(0, amount_spaces_between_title):
+            spaces_between_title_str += " "
+
+        print("\n")
+        print(top_and_bottom_bar_str)
+        print("*" + spaces_between_title_str + self.current_page.title + spaces_between_title_str + "*")
+        print(top_and_bottom_bar_str)
 
     def read_prompt(self):
         print(self.current_page.prompt)
@@ -107,21 +126,19 @@ class Book(object):
             if self.health > 100:  # Can't let health go over 100
                 self.health = 100
 
-        if self.health < 0:  # Game Over if your health goes below 0
-            print("Your health has dropped below 0.\n GAME OVER\n")
+        if self.health <= 0:  # Game Over if your health goes below 0
+            print("Your health has dropped below 0.\n\nGAME OVER\n")
             input("Press Enter to restart...")
-            self.health = self.start_health
-            self.nav_to_page("start")
-
-        print("Current health: " + str(self.health))
+            return False
 
 
 if __name__ == '__main__':
-    with open(game_data_path) as f:
-        game_data = load(f)
+    while True:
+        with open(game_data_path) as f:
+            game_data = load(f)
 
-    book = Book(game_data)
-    book.nav_to_page("start")
-    book.read()
+        book = Book(game_data)
+        book.nav_to_page("start")
+        book.read()
 
 

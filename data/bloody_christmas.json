@@ -45,10 +45,10 @@
   {
     "name": "front_door",
     "title": "Front door",
-	"body": "",
+	"body": "You were viciously mauled by something in the darkness.  You desperately try to crawl in the house, while the pain intensifies.  Things go blurry as you succumb to your injuries...\n",
     "short_description": "",
     "prompt": "Where would you like to go to next?",
-	"linked_pages": ["hallway"],
+	"linked_pages": ["start", "up_stairs", "front_door"],
 	"change_health": -100
   }
 ],
