@@ -1,6 +1,5 @@
 # import the game data
 from json import load
-from re import findall
 game_data_path = 'data/bloody_christmas.json'
 
 
@@ -56,14 +55,21 @@ class Book(object):
 
     def get_input_validate_selection(self):
         self.selection_range = len(self.current_page.linked_pages)
-        self.selection = int(input("\nEnter a number (1 - "
-                          + str(self.selection_range) + "): "))
-        while int(self.selection) not in range(1, self.selection_range + 1):
-            print("Invalid number")
-            self.selection = int(input("\nEnter a number (1 - "
-                              + str(self.selection_range) + "): "))
+        while True:
+            try:
+                self.selection = int(input("\nEnter a number (1 - "
+                                  + str(self.selection_range) + "): "))
+                while int(self.selection) not in range(1, self.selection_range + 1):
+                    print("Invalid number")
+                    self.selection = int(input("\nEnter a number (1 - " + str(self.selection_range) + "): "))
 
-        self.selection -= 1
+                self.selection -= 1
+                break
+
+            except ValueError:
+                print("Invalid number")
+                continue
+
 
     def nav_to_page(self, page_name):
         self.current_page = self.pages[page_name]
