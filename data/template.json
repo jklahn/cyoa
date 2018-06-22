@@ -3,32 +3,92 @@
   {
     "name": "start",
     "title": "Living Room",
-	"body": "\"dashing through the snow...\"\n\"on a one horse open slay...\"\n\"over the fields we goooo...\"\n\"laughing all the way... MU HA HA!...\"\nYou groggily come-to with 'Jingle Bells' draining into your ears.  A blurry living room around you gradually comes into focus.  You're lying on a couch, facing a fireplace.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.  You feel something cold and wet start to run down your forehead.  Wiping it away from your brow you discover it's blood.  That probably explains the splitting headache you have.",
+	"body": "\"dashing through the snow...\"\n\"on a one horse open slay...\"\n\"over the fields we goooo...\"\n\"laughing all the way... MU HA HA!...\"\nYou groggily come-to with 'Jingle Bells' draining into your ears.  A blurry living room around you gradually comes into focus.  You're lying on a couch, facing a log fireplace.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.  You feel something cold and wet start to run down your forehead.  Wiping it away from your brow you discover it's blood.  That probably explains the splitting headache you have.",
     "short_description": "You are in the living room. To your left is a hallway.  Behind you is a kitchen.",
 	"prompt": "Where would you like to go to next?",
-	"linked_pages": ["hallway", "kitchen", "sleep"]
+	"linked_pages": ["hallway", "kitchen", "sleep", "grab_log"],
+	"check_in_inventory": "burning log",
+	"inventory_alt_page": "burning_log_living_room"
   },
   {
     "name": "sleep",
     "title": "Back to sleep",
-	"body": " \"...dashing through the snow... on one horse open slay... over the fields we goooo... laughing all the way... HA HA HA!\" \nYou come-to with 'Jingle Bells' draining into your ears.  Is this song on repeat??  A blurry living room around you gradually comes into focus.  You feel a little better as your head doesn't hurt as much.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.",
+	"body": " \"...dashing through the snow... on one horse open slay... over the fields we goooo... laughing all the way... HA HA HA!\" \nYou come-to with 'Jingle Bells' draining into your ears.  Is this song on repeat??  A blurry living room around you gradually comes into focus.  You feel a little better as your head doesn't hurt as much.  To your left is a hallway which leads to stairs.  To your right are two large windows.  You're facing a log fireplace.  As you sit up, you take a quick look behind yourself and see a kitchen.",
     "short_description": "You are in the living room. To your left is a hallway.  Behind you is a kitchen.",
 	"prompt": "Where would you like to go to next?",
 	"linked_pages": ["hallway", "kitchen"],
 	"change_health": 10
   },
   {
+    "name": "grab_log",
+    "title": "Grab a log from the fireplace",
+	"body": "You pick up a smoldering hot log from the fireplace.  Pain radiates to your hand as it starts to burn you.",
+    "short_description": "",
+	"prompt": "",
+	"linked_pages": ["hallway_log", "kitchen_log", "sleep_log", "drop_log"],
+	"change_health": -20,
+	"add_to_inventory": "burning log"
+  },
+    {
+    "name": "burning_log_living_room",
+    "title": "Living Room",
+	"body": "You are standing in the living room holding a burning log. To your left is a hallway.  Behind you is a kitchen.",
+    "short_description": "",
+	"prompt": "What's next?",
+	"linked_pages": ["hallway_log", "kitchen_log", "sleep_log", "drop_log"],
+	"change_health": -20,
+	"add_to_inventory": "burning log"
+  },
+  {
+    "name": "drop_log",
+    "title": "Drop the log",
+	"body": "You drop the log back into the fireplace.  \"THAT was a dumb idea,\" you say to yourself.  You were always one to learn the hard way.",
+    "short_description": "",
+	"prompt": "",
+	"linked_pages": [""],
+	"inventory_alt_page": "start",
+	"remove_from_inventory": "burning log"
+  },
+  {
+    "name": "hallway_log",
+    "title": "Hallway",
+	"body": "You enter the hallway still clutching the burning log.  The pain becomes unbearable as the fire creeps up your arm.  You drop the log.  It lands on the hardwood flooring can catches the floor on fire.  You try desperately to step on the fire to put it out, but this only enrages the flames.  You pass out from the pain and never wake up...",
+    "short_description": "",
+	"prompt": "",
+	"linked_pages": [""],
+	"change_health": -100
+  },
+  {
+    "name": "kitchen_log",
+    "title": "Kitchen",
+	"body": "You enter the hallway still clutching the burning log.  The pain becomes unbearable as the fire creeps up your arm.  You drop the log.  It lands on the hardwood flooring can catches the floor on fire.  You try desperately to step on the fire to put it out, but this only enrages the flames.  You pass out from the pain and never wake up...",
+    "short_description": "",
+	"prompt": "",
+	"linked_pages": [""],
+	"change_health": -100
+  },
+  {
+    "name": "sleep_log",
+    "title": "Back to sleep",
+	"body": "You lay back down on the couch, cradling the burning log (you must have a death wish).  Not soon after, the couch catches fire and you are engulfed in flames.",
+    "short_description": "",
+	"prompt": "",
+	"linked_pages": [""],
+	"change_health": -100
+  },
+  
+  {
     "name": "hallway",
     "title": "Hallway",
 	"body": "You are in hallway that is dimly lit by the fireplace in the living room behind you. Immediately your left are some dark, creepy stairs.  In front of you is a door.  The door appears to lead to the outside but it's dark out there.\n",
 	"short_description": "You are in the hallway. To your left are stairs.  In front of you is a door leading outside.  Behind you is the living room.\n",
 	"prompt": "Where would you like to go to next?",
-	"linked_pages": ["start", "up_stairs", "front_door"]
+	"linked_pages": ["start", "up_stairs", "front_door", "kitchen"]
   },
   {
     "name": "kitchen",
     "title": "Kitchen",
-	"body": "Just a normal kitchen - albeit the scattered blood stains on walls and cabinets.  'What happened in here?  Looks like pig was butchered in here...' you think to yourself.\nAhead is what appears to be a beadroom.  To your left is a door that leads outside to a deck.  To your right is a hallway.  Behind you is the living room.",
+	"body": "Just a normal kitchen - albeit the scattered blood stains on walls and cabinets.  'What happened in here?  Looks like pig was butchered in here...' you think to yourself.\nAhead is what appears to be a bedroom.  To your left is a door that leads outside to a deck.  To your right is a hallway.  Behind you is the living room.",
     "short_description": "",
     "prompt": "Where would you like to go to next?",
 	"linked_pages": ["start", "hallway", "downstairs_bedroom", "deck_door"]
@@ -44,10 +104,10 @@
   {
     "name": "bedroom_add_flashlight",
     "title": "Get Flashlight",
-	"body": "You grab the flashlight and inspect it.  \"Maglite ML150LR.,\" you read the label aloud.  You flip it on and light instantly floods the bedroom.  Then you flip it back off to conserve the batteries.",
-    "short_description": "You're in the bedroom.  Behind you is the kitchen.",
-    "prompt": "Where to next?",
-	"linked_pages": ["kitchen"],
+	"body": "You grab the flashlight and inspect it.  It's got some heft to it. You read the label aloud: \"Maglite ML150LR.\"  You flip it on and light instantly floods the bedroom.  Then you flip it back off to conserve the batteries.",
+    "short_description": "",
+    "prompt": "",
+	"linked_pages": [],
 	"add_to_inventory": "flashlight"
   },
   {
@@ -86,6 +146,7 @@
 	"linked_pages": ["start", "hallway", "downstairs_bedroom", "deck_door"]
   }
 ],
-
-"starting_health": 90
+"starting_health": 90,
+"welcome_message": "Welcome to \"A Very Bloody Christmas\" - a choose your own adventure game.",
+"max_line_length": 80
 }
