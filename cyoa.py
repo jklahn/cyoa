@@ -1,5 +1,14 @@
 from json import load
-game_data_path = 'data/bloody_christmas.json'  # TODO: Change this import first json file in directory
+from os import listdir
+
+
+def get_data_file_path():
+    for file in listdir('data/'):
+        print(file)
+        if file.endswith('.json'):
+            return 'data/' + file
+
+    print("ERROR: Failed to find a '.json' game data file in the 'data' directory.")
 
 
 class Page(object):
@@ -168,8 +177,9 @@ class Book(object):
 
 
 if __name__ == '__main__':
+
     while True:
-        with open(game_data_path) as f:
+        with open(get_data_file_path()) as f:
             game_data = load(f)
 
         book = Book(game_data)
