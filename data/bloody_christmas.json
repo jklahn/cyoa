@@ -7,7 +7,6 @@
     "short_description": "You are in the living room. To your left is a hallway.  Behind you is a kitchen.",
 	"prompt": "Where would you like to go to next?",
 	"linked_pages": ["hallway", "kitchen", "sleep"],
-	"starting_health": 90
   },
   {
     "name": "sleep",
@@ -66,9 +65,9 @@
     "short_description": "",
     "prompt": "Where would you like to go to next?",
 	"linked_pages": ["start", "up_stairs", "front_door"],
-	"inventory_alt_page": "flashlight_front_door",
 	"change_health": -100,
-	"check_in_inventory": "flashlight"
+	"check_in_inventory": "flashlight",
+	"inventory_alt_page": "flashlight_front_door"
   },
   {
     "name": "flashlight_front_door",
