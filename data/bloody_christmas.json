@@ -6,7 +6,7 @@
 	"body": "\"dashing through the snow...\"\n\"on a one horse open slay...\"\n\"over the fields we goooo...\"\n\"laughing all the way... MU HA HA!...\"\nYou groggily come-to with 'Jingle Bells' draining into your ears.  A blurry living room around you gradually comes into focus.  You're lying on a couch, facing a fireplace.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.  You feel something cold and wet start to run down your forehead.  Wiping it away from your brow you discover it's blood.  That probably explains the splitting headache you have.",
     "short_description": "You are in the living room. To your left is a hallway.  Behind you is a kitchen.",
 	"prompt": "Where would you like to go to next?",
-	"linked_pages": ["hallway", "kitchen", "sleep"],
+	"linked_pages": ["hallway", "kitchen", "sleep"]
   },
   {
     "name": "sleep",
