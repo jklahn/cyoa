@@ -3,7 +3,7 @@
   {
     "name": "start",
     "title": "Living Room",
-	"body": "\"dashing through the snow...\"\n\"on a one horse open slay...\"\n\"over the fields we goooo...\"\n\"laughing all the way... MU HA HA!...\"\nYou groggily come-to with 'Jingle Bells' draining into your ears.  A blurry living room around you gradually comes into focus.  You're lying on a couch, facing a fireplace.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.  You feel something cold and wet start to run down your forehead.  Wiping it away from your brow you discover it's blood.  That probably explains the splitting headache you have.\n",
+	"body": "\"dashing through the snow...\"\n\"on a one horse open slay...\"\n\"over the fields we goooo...\"\n\"laughing all the way... MU HA HA!...\"\nYou groggily come-to with 'Jingle Bells' draining into your ears.  A blurry living room around you gradually comes into focus.  You're lying on a couch, facing a fireplace.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.  You feel something cold and wet start to run down your forehead.  Wiping it away from your brow you discover it's blood.  That probably explains the splitting headache you have.",
     "short_description": "You are in the living room. To your left is a hallway.  Behind you is a kitchen.",
 	"prompt": "Where would you like to go to next?",
 	"linked_pages": ["hallway", "kitchen", "sleep"],
@@ -12,7 +12,7 @@
   {
     "name": "sleep",
     "title": "Back to sleep",
-	"body": " \"...dashing through the snow... on one horse open slay... over the fields we goooo... laughing all the way... HA HA HA!\" \nYou come-to with 'Jingle Bells' draining into your ears.  Is this song on repeat??  A blurry living room around you gradually comes into focus.  You feel a little better as your head doesn't hurt as much.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.\n",
+	"body": " \"...dashing through the snow... on one horse open slay... over the fields we goooo... laughing all the way... HA HA HA!\" \nYou come-to with 'Jingle Bells' draining into your ears.  Is this song on repeat??  A blurry living room around you gradually comes into focus.  You feel a little better as your head doesn't hurt as much.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.",
     "short_description": "You are in the living room. To your left is a hallway.  Behind you is a kitchen.",
 	"prompt": "Where would you like to go to next?",
 	"linked_pages": ["hallway", "kitchen"],
@@ -37,7 +37,7 @@
   {
     "name": "downstairs_bedroom",
     "title": "Bedroom",
-	"body": "The bedroom is surprisingly well lit by large open windows and a full moon outside.  Still, you flip the lightswitch to try and get some additional light, but nothing happens.  'Power must be out.' you think to yourself. There's not much of interest in this room save for a flashlight that's laying on the night stand.  This bedroom doesn't lead anywhere.",
+	"body": "The bedroom is surprisingly slightly lit by large open windows and a waning moon outside.  You flip the lightswitch to try and get some additional light, but nothing happens.  \"Power must be out,\" you think to yourself. There's not much of interest in this room save for a flashlight that's laying on the night stand.  This bedroom doesn't lead anywhere.",
     "short_description": "You're in the bedroom.  Behind you is the kitchen.",
     "prompt": "What's next?",
 	"linked_pages": ["kitchen", "bedroom_add_flashlight"]
@@ -62,11 +62,21 @@
   {
     "name": "front_door",
     "title": "Front door",
-	"body": "You are viciously mauled by something in the darkness.  You desperately try to crawl in the house, while the pain exponentially intensifies.  Things go blurry as you succumb to your injuries...\n",
+	"body": "You are viciously mauled by something in the darkness.  You desperately try to crawl in the house, while the pain exponentially intensifies.  Things go blurry as you succumb to your injuries...",
     "short_description": "",
     "prompt": "Where would you like to go to next?",
 	"linked_pages": ["start", "up_stairs", "front_door"],
-	"change_health": -100
+	"inventory_alt_page": "flashlight_front_door",
+	"change_health": -100,
+	"check_in_inventory": "flashlight"
+  },
+  {
+    "name": "flashlight_front_door",
+    "title": "Front door",
+	"body": "You open the front door and then turn on your flashlight.  Almost immediately something lunges at you.  Instinctively you slam the door shut and the \"thing\" smacks into the door with a thud.  You catch your breath and resign to not go outside at this time.",
+    "short_description": "",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["start", "up_stairs"]
   },
   {
     "name": "deck_door",

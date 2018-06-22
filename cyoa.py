@@ -14,8 +14,9 @@ class Page(object):
         self.visit_counter = 0
         self.change_health = page.get("change_health")  # Get the health change for the page if it exists
         self.add_to_inventory = page.get("add_to_inventory")
+        self.remove_from_inventory = page.get("remove_from_inventory")
         self.check_in_inventory = page.get("check_in_inventory")
-
+        self.inventory_alt_page = page.get("inventory_alt_page")
 
     def wrap_text(self, text):
         formatted_text = ""
@@ -57,11 +58,10 @@ class Book(object):
 
     def read(self):
         while True:
+            self.check_inventory()
             self.read_current_page()
             if self.check_health() is False:  # Start over if dead
                 break
-            self.check_inventory()
-            self.read_prompt()
             self.get_input_validate_selection()
             self.next_page = self.current_page.linked_pages[int(self.selection)]
             self.prev_page = self.current_page
@@ -71,17 +71,26 @@ class Book(object):
         self.selection_range = len(self.current_page.linked_pages)
         while True:
             try:
-                self.selection = int(input("\nEnter a number (1 - "
-                                  + str(self.selection_range) + "): "))
+                self.selection = 0
                 while int(self.selection) not in range(1, self.selection_range + 1):
-                    print("Invalid number")
-                    self.selection = int(input("\nEnter a number (1 - " + str(self.selection_range) + "): "))
+                    print("")
+                    self.read_prompt()
+
+                    if self.selection_range < 2:
+                        self.selection = int(input("\nEnter a number ("
+                                                   + str(self.selection_range) + "): "))
+                    else:
+                        self.selection = int(input("\nEnter a number (1 - "
+                                                   + str(self.selection_range) + "): "))
+
+                    if int(self.selection) not in range(1, self.selection_range + 1):
+                        print("\nInvalid selection")
 
                 self.selection -= 1
                 break
 
             except ValueError:
-                print("Invalid number")
+                print("\nInvalid selection")
                 continue
 
     def nav_to_page(self, page_name):
@@ -120,6 +129,7 @@ class Book(object):
 
     def check_health(self):
         if self.current_page.change_health:  # add or subtract health
+            print("")
             if self.current_page.change_health > 0:
                 print("+" + str(self.current_page.change_health) + " health")
 
@@ -151,7 +161,10 @@ class Book(object):
                 self.inventory.remove(self.current_page.remove_from_inventory)
 
         if self.current_page.check_in_inventory:  # use alt page links if present in inventory
-            if self.current_page.check_in_inventory in self.inventory:
+            print("Inventory check is good:")
+            print(self.current_page.check_in_inventory)
+            if self.current_page.check_in_inventory and self.current_page.check_in_inventory in self.inventory:
+                self.nav_to_page(self.current_page.inventory_alt_page)
 
 
 if __name__ == '__main__':
