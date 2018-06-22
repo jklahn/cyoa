@@ -27,5 +27,5 @@ The following attributes are optional for pages:
 - `"inventory_alt_page"`: Use in conjunction with "check_in_inventory"; if item is in inventory, use this page.
 
 Misc:
-`"starting_health"` (required): Defines the health amount when the game is started.
+- `"starting_health"` (required): Defines the health amount when the game is started.
 
