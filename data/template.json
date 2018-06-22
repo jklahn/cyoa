@@ -113,10 +113,77 @@
   {
     "name": "up_stairs",
     "title": "Up the stairs",
+	"body": "You slowly make your way up the stairs and notice a trail of blood as you go.  You reach a landing.  Everything is dark.",
+    "short_description": "",
+    "prompt": "Where would you like to go to next?",
+    "check_in_inventory": "flashlight",
+    "inventory_alt_page": "landing_flashlight",
+	"linked_pages": ["hallway", "explore_landing"]
+  },
+  {
+    "name": "explore_landing",
+    "title": "Explore the landing",
+	"body": "You start to feel your way around the dark.  You decide to walk straight ahead until you feel a wall.  Then, in a counter-clockwise direction, you walk while feeling the wall until you come to a door frame.  You gracefully slide through the door and then trip over something on the floor and fall into a pool of something cold and wet.  The liquid splashes into your open mouth and you instantly know it's blood.  Panicked, you scramble and slip to your feet and break out into a run toward the landing.  Only, you're not running toward the landing.  You hit the railing of the staircase full speed and flip over the bar.  You fall and break your neck.",
+    "short_description": "",
+    "prompt": "",
+	"linked_pages": [""],
+	"change_health": -100
+  },
+  {
+    "name": "landing_flashlight",
+    "title": "Landing",
+	"body": "You turn on the flashing and start to paint the landing area.  It reveals a large master bedroom on the left. In front of you is a hallway that leads to another room.  To your immediate right is another bedroom.  It appears to be a boy's bedroom judging by the decorations",
+    "short_description": "You are in the landing area.  To the left is a large master bedroom.  In front of you is a hallway that leads to another room.  To your immediate right is a boy's bedroom",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["master_bedroom", "upstairs_hallway", "boy_bedroom"]
+  },
+  {
+    "name": "upstairs_hallway",
+    "title": "Hallway",
 	"body": "",
     "short_description": "",
     "prompt": "Where would you like to go to next?",
-	"linked_pages": ["hallway"]
+	"linked_pages": ["landing_flashlight", "hallway_bathroom", "girl_bedroom"]
+  },
+  {
+    "name": "hallway_bathroom",
+    "title": "Bathroom",
+	"body": "",
+    "short_description": "",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["upstairs_hallway"]
+  },
+  {
+    "name": "girl_bedroom",
+    "title": "Girl's Bedroom",
+	"body": "",
+    "short_description": "",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["upstairs_hallway"]
+  },
+  {
+    "name": "master_bedroom",
+    "title": "Master Bedroom",
+	"body": "",
+    "short_description": "",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["master_bathroom", "landing_flashlight"]
+  },
+  {
+    "name": "boy_bedroom",
+    "title": "Boy's Bedroom",
+	"body": "",
+    "short_description": "",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["landing_flashlight"]
+  },
+  {
+    "name": "master_bathroom",
+    "title": "Master Bathroom",
+	"body": "",
+    "short_description": "",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["master_bedroom"]
   },
   {
     "name": "front_door",
@@ -147,6 +214,6 @@
   }
 ],
 "starting_health": 90,
-"welcome_message": "Welcome to \"A Very Bloody Christmas\" - a choose your own adventure game.",
+"welcome_message": "\nWelcome to \"A Very Bloody Christmas\" - a choose your own adventure game.\n",
 "max_line_length": 80
 }

@@ -29,3 +29,6 @@ The following attributes are optional for pages:
 Misc:
 - `"starting_health"` (required): Defines the health amount when the game is started.
 
+Tips:
+- Build out the world (make empty/placeholder pages) before adding details and descriptions.  This will help you better
+visualize, plan, and structure your game.
