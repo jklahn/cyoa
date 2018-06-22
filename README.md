@@ -6,10 +6,10 @@ it somewhat easier for folks to write their own CYOA game.  With the CYOA engine
 as possible make it easier to compose games.
 
 # To compose games:
-````
-- Game data is in JSON format and read from the 'data' directory.  Use the template in the 'data' directory as a guide.
+- Game data is in JSON format and read from the .json file in the 'data' directory.  Use the template in the 'data'
+directory as a guide.
 - The following attributes are required for each page:
-
+````
 - "name": Unique name for for page.  Pages are connected (referenced) by these names.
 - "title": Titles are what are displayed when offered as choices for the player to make.
 - "body": The body is the main text of the page.  It's normally the long description.
@@ -18,3 +18,5 @@ as possible make it easier to compose games.
 - "linked_pages": A list of unique names (pages) that are choices for the player to make.  If pages are nodes, these are
 the connected nodes.
 ````
+
+- The following attributes are optional for pages:
