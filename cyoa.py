@@ -88,8 +88,12 @@ class Book(object):
         else:
             print(self.current_page.body)
 
-    def print_title(self):
-        title_length = len(self.current_page.title)
+    def print_title(self, title=None):
+        if title is None:
+            title = self.current_page.title
+        else:
+            title = title
+        title_length = len(title)
         top_and_bottom_bar_str = ""
         spaces_between_title_str = ""
         top_and_bottom_bar_length = int(self.current_page.max_line_length)
@@ -102,7 +106,7 @@ class Book(object):
 
         print("\n")
         print(top_and_bottom_bar_str)
-        print("*" + spaces_between_title_str + self.current_page.title + spaces_between_title_str + "*")
+        print("*" + spaces_between_title_str + title + spaces_between_title_str + "*")
         print(top_and_bottom_bar_str)
 
     def read_prompt(self):
@@ -129,7 +133,8 @@ class Book(object):
             print("Current Health: " + str(self.health))
 
         if self.health <= 0:  # Game Over if your health goes below 0
-            print("Your health has dropped below 0.\n\nGAME OVER\n")
+            print("Your health has dropped below 0.")
+            self.print_title('GAME OVER')
             input("Press Enter to restart...")
             return False
 
@@ -138,16 +143,16 @@ class Book(object):
             if self.current_page.add_to_inventory not in self.inventory:
                 self.inventory.append(self.current_page.add_to_inventory)  # add to inventory
 
-            # remove the link to inventory page from the previous page so it can't be accessed
-            self.prev_page.linked_pages.remove(self.current_page.name)
+            self.remove_page_from_all_linked_pages(self.current_page.name)  # remove page so it can't be accessed again
             print(self.current_page.body)
             self.check_health()
             print("\nCurrent Inventory:")
             print(self.inventory)
-            self.nav_to_page(self.prev_page.name)  # go back to the previous pag
+            self.nav_to_page(self.current_page.inventory_alt_page)
 
         if self.current_page.remove_from_inventory and self.current_page.remove_from_inventory in self.inventory:
             self.inventory.remove(self.current_page.remove_from_inventory)  # remove from inventory if present
+            self.remove_page_from_all_linked_pages(self.current_page.name)  # remove page so it can't be accessed again
             print(self.current_page.body)
             print("\nCurrent Inventory:")
             print(self.inventory)
@@ -155,6 +160,11 @@ class Book(object):
 
         if self.current_page.check_in_inventory and self.current_page.check_in_inventory in self.inventory:
             self.nav_to_page(self.current_page.inventory_alt_page)   # use alt page links if present in inventory
+
+    def remove_page_from_all_linked_pages(self, page_name):
+        for key, page in self.pages.items():
+            if page_name in page.linked_pages:
+                page.linked_pages.remove(page_name)
 
 
 def get_data_file_path():
