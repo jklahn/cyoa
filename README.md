@@ -21,9 +21,11 @@ nodes, these are the connected nodes.
 
 The following attributes are optional for pages:
 - `"change_health"`: If a page (choice) affects a players health, this attribute can increase or decrease health.
-- `"add_to_inventory"`: If you want to add an item to the players inventory, use this attribute.
-- `"remove_from_inventory"`: Removes an item from a players inventory if the item is present.
-- `"check_in_inventory"`: Checks if a certain item is in a players inventory.
+- `"add_to_inventory"`: If you want to add an item to the players inventory, use this attribute.  Use "inventory_alt_page"
+to define what page to go to after adding to inventory.
+- `"remove_from_inventory"`: Removes an item from a players inventory if the item is present.  Use "inventory_alt_page"
+to define what page to go to after removing from inventory.
+- `"check_in_inventory"`: Checks if a certain item is in a players inventory.  Use in conjunction with "inventory_alt_page"
 - `"inventory_alt_page"`: Use in conjunction with "check_in_inventory"; if item is in inventory, use this page.
 
 Misc:
@@ -32,3 +34,5 @@ Misc:
 Tips:
 - Build out the world (make empty/placeholder pages) before adding details and descriptions.  This will help you better
 visualize, plan, and structure your game.
+- Adding or removing something from inventory requires a separate 'page'/node be created.  Once the inventory page has
+been visited in-game, it will be removed from all linked pages.  This prevents the page from being re-visited.
