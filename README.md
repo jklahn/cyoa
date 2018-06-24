@@ -36,3 +36,13 @@ Tips:
 visualize, plan, and structure your game.
 - Adding or removing something from inventory requires a separate 'page'/node be created.  Once the inventory page has
 been visited in-game, it will be removed from all linked pages.  This prevents the page from being re-visited.
+- Because text is stored in JSON format, make sure to escape characters where needed:
+````
+- Double quote is replaced with \"
+- Newline is replaced with \n
+- Backspace is replaced with \b
+- Form feed is replaced with \f
+- Carriage return is replaced with \r
+- Tab is replaced with \t
+- Backslash is replaced with \\
+````
