@@ -89,8 +89,8 @@
   {
     "name": "hallway",
     "title": "Hallway",
-	"body": "You are in hallway that is dimly lit by the fireplace in the living room behind you. Immediately your left are some dark, creepy stairs.  In front of you is a door.  The door appears to lead to the outside but it's dark out there.\n",
-	"short_description": "You are in the hallway. To your left are stairs.  In front of you is a door leading outside.  Behind you is the living room.\n",
+	"body": "You are in hallway that is dimly lit by the fireplace in the living room behind you. Immediately your left are some dark, creepy stairs.  Slightly behind you and to the left leads to the kitchen.  In front of you is a door.  The door appears to lead to the outside, but it's dark out there.\n",
+	"short_description": "You are in the hallway. To your left are stairs and the kitchen.  In front of you is a door leading outside.  Behind you is the living room.\n",
 	"prompt": "Where would you like to go to next?",
 	"linked_pages": ["living_room", "up_stairs", "front_door", "kitchen"]
   },
@@ -123,12 +123,18 @@
   {
     "name": "up_stairs",
     "title": "Up the stairs",
-	"body": "You slowly make your way up the stairs and notice a trail of blood as you go.  You reach a landing.  Everything is dark.",
-    "short_description": "",
+	"body": "You slowly make your way up the stairs and notice a trail of blood as you go.  You appear to reach a landing.  Everything is dark.",
+    "short_description": "You slowly make your way up the stairs and notice a trail of blood as you go.  You reach a landing.  Everything is dark.",
     "prompt": "Where would you like to go to next?",
-    "check_in_inventory": "flashlight",
-    "inventory_alt_page": "landing_flashlight",
-	"linked_pages": ["hallway", "explore_landing"]
+	"linked_pages": ["down_stairs", "explore_landing"]
+  },
+  {
+    "name": "down_stairs",
+    "title": "Down the stairs",
+	"body": "You slowly head back down the stairs, being careful not to step in the blood trail as you go.  You're now in the hallway.  Directly to your left is the front door.  To your right is the living room and the kitchen.",
+    "short_description": "You slowly head back down the stairs, being careful not to step in the blood trail as you go.  You're now in the hallway.  Directly to your left is the front door.  To your right is the living room and the kitchen.",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["front_door", "living_room", "kitchen", "up_stairs"]
   },
   {
     "name": "explore_landing",
@@ -137,6 +143,8 @@
     "short_description": "",
     "prompt": "",
 	"linked_pages": [""],
+    "check_in_inventory": "flashlight",
+    "inventory_alt_page": "landing_flashlight",
 	"change_health": -100
   },
   {
@@ -212,7 +220,7 @@
 	"body": "You open the front door and then turn on your flashlight.  Almost immediately something lunges at you.  Instinctively you slam the door shut and the \"thing\" smacks into the door with a thud.  You catch your breath and resign to not go outside at this time.",
     "short_description": "",
     "prompt": "Where would you like to go to next?",
-	"linked_pages": ["start", "up_stairs"]
+	"linked_pages": ["living_room", "up_stairs"]
   },
   {
     "name": "deck_door",
