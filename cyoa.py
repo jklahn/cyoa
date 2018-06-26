@@ -67,13 +67,13 @@ class Book(object):
                                                    + str(self.selection_range) + "): "))
 
                     if int(self.selection) not in range(1, self.selection_range + 1):
-                        print("\nInvalid selection")
+                        print("\nInvalid selection.  Try again.")
 
                 self.selection -= 1
                 break
 
             except ValueError:
-                print("\nInvalid selection")
+                print("\nInvalid selection.  Try again.")
                 continue
 
     def nav_to_page(self, page_name):
@@ -81,12 +81,12 @@ class Book(object):
 
     def read_current_page(self):
         print("")
-        input("Press any key to continue...")
         self.print_title()
         if self.current_page.visit_counter > 0:
             print(self.current_page.short_description)
         else:
             print(self.current_page.body)
+        input("\nPress any key to continue...")
 
     def print_title(self, title=None):
         if title is None:

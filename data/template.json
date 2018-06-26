@@ -98,7 +98,7 @@
     "name": "kitchen",
     "title": "Kitchen",
 	"body": "Just a normal kitchen - albeit the scattered blood stains on walls and cabinets.  'What happened in here?  Looks like pig was butchered in here...' you think to yourself.\nAhead is what appears to be a bedroom.  To your left is a door that leads outside to a deck.  To your right is a hallway.  Behind you is the living room.",
-    "short_description": "",
+    "short_description": "You're back in the kitchen.  To your left is a door that leads outside to a deck.  To your right is a hallway.  Behind you is the living room.",
     "prompt": "Where would you like to go to next?",
 	"linked_pages": ["living_room", "hallway", "downstairs_bedroom", "deck_door"]
   },
@@ -153,7 +153,7 @@
 	"body": "You turn on the flashing and start to paint the landing area.  It reveals a large master bedroom on the left. In front of you is a hallway that leads to another room.  To your immediate right is another bedroom.  It appears to be a boy's bedroom judging by the decorations",
     "short_description": "You are in the landing area.  To the left is a large master bedroom.  In front of you is a hallway that leads to another room.  To your immediate right is a boy's bedroom",
     "prompt": "Where would you like to go to next?",
-	"linked_pages": ["master_bedroom", "upstairs_hallway", "boy_bedroom"]
+	"linked_pages": ["master_bedroom", "upstairs_hallway", "boy_bedroom", "down_stairs"]
   },
   {
     "name": "upstairs_hallway",
@@ -225,8 +225,8 @@
   {
     "name": "deck_door",
     "title": "Deck Door",
-	"body": "",
-    "short_description": "",
+	"body": "You attempt to open the door but it's jammed and it won't budge.  Doesn't like like you can go this way.",
+    "short_description": "You try the deck door again.  Same result.  It won't open.",
     "prompt": "Where would you like to go to next?",
 	"linked_pages": ["living_room", "hallway", "downstairs_bedroom", "deck_door"]
   }
