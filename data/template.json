@@ -218,7 +218,7 @@
     "name": "flashlight_front_door",
     "title": "Front door",
 	"body": "You open the front door and then turn on your flashlight.  Almost immediately something lunges at you.  Instinctively you slam the door shut and the \"thing\" smacks into the door with a thud.  You catch your breath and resign to not go outside at this time.",
-    "short_description": "",
+    "short_description": "You peak back out the window of the door and see the darkness.  The creature is probably still out there.  Best not to risk it.",
     "prompt": "Where would you like to go to next?",
 	"linked_pages": ["living_room", "up_stairs"]
   },
