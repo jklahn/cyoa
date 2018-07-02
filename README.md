@@ -30,6 +30,8 @@ to define what page to go to next after removing from inventory.
 
 Misc:
 - `"starting_health"` (required): Defines the health amount when the game is started.
+- `"welcome_message"` (required): Defines welcome message at the start of the game.  It's printed only once at the beginning.
+- `"max_line_length"` (required): Sets the maximum length of each line that is printed during the game.  Otherwise, things look ugly.
 
 Tips:
 - Build out the world (make empty/placeholder pages) before adding details and descriptions.  This will help you better
