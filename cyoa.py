@@ -3,12 +3,11 @@ from os import listdir
 
 
 class Page(object):
-    def __init__(self, page, max_line_length=80):
-        self.max_line_length = max_line_length
+    def __init__(self, page):
         self.name = page["name"]
         self.title = page["title"]
-        self.body = wrap_text(page["body"], max_line_lenth)
-        self.prompt = wrap_text(page["prompt"], max_line_lenth)
+        self.body = wrap_text(page["body"])
+        self.prompt = wrap_text(page["prompt"])
         self.short_description = page["short_description"]
         self.linked_pages = page["linked_pages"]
         self.visit_counter = 0
@@ -27,16 +26,16 @@ class Book(object):
         self.selection = None
         self.next_page = None
         self.prev_page = None
-        self.max_line_lenth = game_data["max_line_length"]
+        self.max_line_length = max_line_length
 
         # add pages to the book
         for page in game_data["pages"]:
-            self.pages[page["name"]] = Page(page, self.max_line_lenth)
+            self.pages[page["name"]] = Page(page)
 
         # set state
         self.start_health = game_data["starting_health"]
         self.health = self.start_health
-        self.welcome_message = wrap_text(game_data["welcome_message"], self.max_line_lenth)
+        self.welcome_message = wrap_text(game_data["welcome_message"])
         self.inventory = []
 
     def read(self):
@@ -96,7 +95,7 @@ class Book(object):
         title_length = len(title)
         top_and_bottom_bar_str = ""
         spaces_between_title_str = ""
-        top_and_bottom_bar_length = int(self.current_page.max_line_length)
+        top_and_bottom_bar_length = int(self.max_line_length)
         amount_spaces_between_title = int((top_and_bottom_bar_length - title_length - 2) / 2)
         for i in range(0, top_and_bottom_bar_length):
             top_and_bottom_bar_str += "*"
@@ -175,7 +174,7 @@ def get_data_file_path():
     print("ERROR: Failed to find a '.json' game data file in the 'data' directory.")
 
 
-def wrap_text(text, max_line_length):
+def wrap_text(text):
     formatted_text = ""
     for string in text.split("\n"):
         if len(string) > max_line_length:  # if the string is greater than the max allowed per line
@@ -198,9 +197,10 @@ def wrap_text(text, max_line_length):
 if __name__ == '__main__':
 
     while True:
+        # open the and load the first json file in /data
         with open(get_data_file_path()) as f:
             game_data = load(f)
-        max_line_lenth = game_data["max_line_length"]
+        max_line_length = game_data["max_line_length"]
         book = Book(game_data)
         print(book.welcome_message)
         book.nav_to_page("start")
