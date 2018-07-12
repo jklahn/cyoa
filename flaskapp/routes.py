@@ -1,7 +1,21 @@
 from flask import Flask, render_template, request
 from os import path, listdir
 from json import load
+
 app = Flask(__name__)  # create flask object
+
+
+def get_game_data_file_path():
+    file_path = path.join(path.abspath(path.curdir), '../data')
+    for file_name in listdir(file_path):
+        if file_name.endswith('.json'):
+            return file_path + '/' + file_name
+
+    print("ERROR: Failed to find a '.json' game data file in the 'data' directory.")
+
+
+with open(get_game_data_file_path()) as f:  # load the game data
+    game_data = load(f)
 
 
 class Page(object):
@@ -118,26 +132,26 @@ class Book(object):
             print(self.pages[link].title + " [" + str(index + 1) + "]")
 
     def check_health(self):
+        health_message = ""
         if self.current_page.change_health:  # add or subtract health
-            print("")
+            health_message += "<br/><br/>"
             if self.current_page.change_health > 0:
-                print("+" + str(self.current_page.change_health) + " health")
+                health_message += ("+" + str(self.current_page.change_health) + " health<br/>")
 
             else:
-                print(str(self.current_page.change_health) + " health")
+                health_message += (str(self.current_page.change_health) + " health<br/><br/>")
 
             self.health += self.current_page.change_health
 
             if self.health > 100:  # Can't let health go over 100
                 self.health = 100
 
-            print("Current Health: " + str(self.health))
+            # health_message += ("<br/>Current Health: " + str(self.health))
 
         if self.health <= 0:  # Game Over if your health goes below 0
-            print("Your health has dropped below 0.")
-            self.print_title('GAME OVER')
-            input("Press Enter to restart...")
-            return False
+            health_message = "<br/>Your health has dropped below 0.<br/>"
+
+        return health_message
 
     def check_inventory(self):
         if self.current_page.add_to_inventory:
@@ -145,22 +159,14 @@ class Book(object):
                 self.inventory.append(self.current_page.add_to_inventory)  # add to inventory
 
             self.remove_page_from_all_linked_pages(self.current_page.name)  # remove page so it can't be accessed again
-            print(self.current_page.body)
-            self.check_health()
-            print("\nCurrent Inventory:")
-            print(self.inventory)
-            self.nav_to_page(self.current_page.inventory_alt_page)
+            return True
 
         if self.current_page.remove_from_inventory and self.current_page.remove_from_inventory in self.inventory:
             self.inventory.remove(self.current_page.remove_from_inventory)  # remove from inventory if present
             self.remove_page_from_all_linked_pages(self.current_page.name)  # remove page so it can't be accessed again
-            print(self.current_page.body)
-            print("\nCurrent Inventory:")
-            print(self.inventory)
-            self.nav_to_page(self.current_page.inventory_alt_page)
+            return True
 
-        if self.current_page.check_in_inventory and self.current_page.check_in_inventory in self.inventory:
-            self.nav_to_page(self.current_page.inventory_alt_page)   # use alt page links if present in inventory
+        return False  # if inventory is not affected
 
     def remove_page_from_all_linked_pages(self, page_name):
         for key, page in self.pages.items():
@@ -168,33 +174,39 @@ class Book(object):
                 page.linked_pages.remove(page_name)
 
 
-def wrap_text(text, max_line_length=80):
+def wrap_text(text, max_line_length=120):
     formatted_text = ""
     for string in text.split("\n"):
         if len(string) > max_line_length:  # if the string is greater than the max allowed per line
             line = ""
             for word in string.split():  # split string into words if greater than max
                 if len(line) + len(word) > max_line_length:
-                    formatted_text += "\n" + line
+                    formatted_text += "<br/>" + line
                     line = "" + word + " "
                 else:
                     line += word + " "
 
-            formatted_text += "\n" + line
+            formatted_text += "<br/>" + line
         else:
-            string += "\n"  # add the new line back
+            string += "<br/>"  # add the new line back
             formatted_text += string
 
     return formatted_text
 
 
-def get_game_data_file_path():
-    file_path = path.join(path.abspath(path.curdir), '../data')
-    for file_name in listdir(file_path):
-        if file_name.endswith('.json'):
-            return file_path + '/' + file_name
+def restart():
+    with open(get_game_data_file_path()) as f:  # load the game data
+        global game_data
+        game_data = load(f)
 
-    print("ERROR: Failed to find a '.json' game data file in the 'data' directory.")
+    global max_line_length
+    max_line_length = game_data["max_line_length"]
+
+    global book
+    book = Book(game_data)
+    book.nav_to_page("start")
+    book.health = book.start_health
+    book.inventory = []
 
 
 def get_current_linked_pages():
@@ -205,14 +217,102 @@ def get_current_linked_pages():
     return linked_pages
 
 
+def get_page_body():
+    if book.current_page.visit_counter > 0:
+        return book.current_page.short_description
+    else:
+        return book.current_page.body
+
+
+def build_page_contents():
+    # get the page body
+    page_body = get_page_body()
+
+    # Check if adding to inventory
+    if book.current_page.add_to_inventory:
+        book.inventory.append(book.current_page.add_to_inventory)  # add to inventory
+        book.remove_page_from_all_linked_pages(book.current_page.name)  # remove page so it can't be accessed again
+        book.nav_to_page(book.current_page.inventory_alt_page)
+
+        page_body += '<br/>Current Inventory:<br/>' + str(book.inventory)  # add current inventory to the page
+
+        health_message = book.check_health()  # check for a change in health
+
+        if health_message:  # add health message to the page if there is one
+
+            page_body += health_message
+
+            if 'Your health has dropped below 0' in health_message:
+                prompt = "<br/>GAME OVER<br/>"
+                linked_pages = {}
+                return page_body, prompt, linked_pages
+        prompt = ""
+        linked_pages = {book.current_page.name: 'Continue'}
+
+    # Check if removing from inventory
+    elif book.current_page.remove_from_inventory and book.current_page.remove_from_inventory in book.inventory:
+        book.inventory.remove(book.current_page.remove_from_inventory)  # remove from inventory if present
+        book.remove_page_from_all_linked_pages(book.current_page.name)  # remove page so it can't be accessed again
+        book.nav_to_page(book.current_page.inventory_alt_page)
+
+        if book.inventory:
+            page_body += '<br/>Current Inventory:<br/>' + str(book.inventory)
+        else:
+            page_body += '<br/><br/>Current Inventory:<br/>[Empty]<br/>'
+
+        health_message = book.check_health()  # check for a change in health
+
+        if health_message:  # add health message to the page if there is one
+
+            page_body += health_message
+
+            if 'Your health has dropped below 0' in health_message:
+                prompt = "<br/>GAME OVER<br/>"
+                linked_pages = {}
+                return page_body, prompt, linked_pages
+
+        prompt = ""
+        linked_pages = {book.current_page.name: 'Continue'}
+
+    # Page is checking if something is in inventory to decide next pages
+    elif book.current_page.check_in_inventory and book.current_page.check_in_inventory in book.inventory:
+        book.nav_to_page(book.current_page.inventory_alt_page)
+        page_body = get_page_body()
+
+        health_message = book.check_health()  # check for a change in health
+
+        if health_message:  # add health message to the page if there is one
+
+            page_body += health_message
+
+            if 'Your health has dropped below 0' in health_message:
+                prompt = "<br/>GAME OVER<br/>"
+                linked_pages = {}
+                return page_body, prompt, linked_pages
+
+        linked_pages = get_current_linked_pages()
+        prompt = book.current_page.prompt
+
+    # Do a final health check if it wasn't done in an inventory check
+    else:
+        health_message = book.check_health()  # check for a change in health
+
+        if health_message:  # add health message to the page if there is one
+
+            page_body += health_message
+
+            if 'Your health has dropped below 0' in health_message:
+                prompt = "<br/>GAME OVER<br/>"
+                linked_pages = {}
+                return page_body, prompt, linked_pages
+
+        linked_pages = get_current_linked_pages()
+        prompt = book.current_page.prompt
+
+    return page_body, prompt, linked_pages
+
+
 if __name__ == '__main__':
-
-    with open(get_game_data_file_path()) as f:  # load the game data
-        game_data = load(f)
-    max_line_length = game_data["max_line_length"]
-    book = Book(game_data)
-    book.nav_to_page("start")
-
     @app.route('/')
     def home():
         return render_template('home.html', title=game_data["title"], welcome_message=game_data["welcome_message"])
@@ -223,17 +323,23 @@ if __name__ == '__main__':
 
     @app.route('/start')
     def start():
-        book.nav_to_page("start")
+        restart()
 
         return render_template('start.html', title=book.current_page.title, page_body=book.current_page.body,
-                               prompt=book.current_page.prompt, linked_pages=get_current_linked_pages())
+                               prompt=book.current_page.prompt, linked_pages=get_current_linked_pages(),
+                               current_health=book.health)
 
     @app.route('/start', methods=['POST'])
     def start_post():
         next_page = request.form.get('next-page')
         book.nav_to_page(next_page)
 
-        return render_template('start.html', title=book.current_page.title, page_body=book.current_page.body,
-                               prompt=book.current_page.prompt, linked_pages=get_current_linked_pages())
+        page_body, prompt, linked_pages = build_page_contents()
+
+        book.current_page.visit_counter += 1  # increment the page visit counter
+
+        return render_template('start.html', title=book.current_page.title, page_body=page_body,
+                               prompt=prompt, linked_pages=linked_pages,
+                               current_health=book.health)
 
     app.run(debug=True, use_reloader=True)  # start flask (render web pages)

@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
   <div class="jumbo">
+    {% autoescape false %}
     <h1>{{ welcome_message }}</h1>
+    {% endautoescape %}
     <div class="buttonholder">
       <a class="startbutton" href="{{ url_for('start') }}" title="Start the game">START</a>
     </div>

@@ -42,11 +42,10 @@
     "name": "burning_log_living_room",
     "title": "Living Room",
 	"body": "You are standing in the living room holding a burning log. To your left is a hallway.  Behind you is a kitchen.",
-    "short_description": "",
+    "short_description": "You are standing in the living room holding a burning log. To your left is a hallway.  Behind you is a kitchen.",
 	"prompt": "What's next?",
 	"linked_pages": ["hallway_log", "kitchen_log", "sleep_log", "drop_log"],
-	"change_health": -20,
-	"add_to_inventory": "burning log"
+	"change_health": -20
   },
   {
     "name": "drop_log",

@@ -44,6 +44,7 @@ header h1.logo:hover {
  */
 
 .menu {
+  color: white;
   float: right;
   margin-top: 8px;
 }
@@ -123,7 +124,7 @@ h3 {
   background-color: #999;
   border: none;
   color: white;
-  padding: 0px 10px 5px 10px;
+  padding: 5px 10px 5px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
