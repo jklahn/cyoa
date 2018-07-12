@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="jumbo">
+    <h1>{{ welcome_message }}</h1>
+    <div class="buttonholder">
+      <a class="startbutton" href="{{ url_for('start') }}" title="Start the game">START</a>
+    </div>
+  </div>
+{% endblock %}

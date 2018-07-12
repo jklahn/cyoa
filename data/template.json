@@ -231,6 +231,7 @@
 	"linked_pages": ["living_room", "hallway", "downstairs_bedroom", "deck_door"]
   }
 ],
+"title": "A Very Bloody Christmas",
 "starting_health": 90,
 "welcome_message": "\nWelcome to \"A Very Bloody Christmas\" - a choose your own adventure game.\n",
 "max_line_length": 80

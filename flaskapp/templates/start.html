@@ -1,0 +1,15 @@
+{% extends "page.html" %}
+{% block content %}
+  <div class="jumbo">
+    <h4>{{ page_body }}</h4>
+      <h4>{{ prompt }}</h4>
+
+      {% for page_link, page_title in linked_pages.items() %}
+      <form method="post" id="form">
+        <div >
+          <button class="page-button" type="submit" name="next-page" value="{{ page_link }}">{{ page_title }}</button>
+        </div>
+      </form>
+      {% endfor %}
+  </div>
+{% endblock %}
