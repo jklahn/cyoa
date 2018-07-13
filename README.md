@@ -4,6 +4,15 @@ Goosebumps" books. Or maybe you enjoyed playing "Zork" or "The Hitchhiker's Guid
 a platform that made it easier for others to write their own CYOA game.  With the CYOA engine, I've tried my best to
 abstract as much as possible make it easier to compose games.
 
+## To play the game:
+Games can be played using two different methods:
+1) Command Line (for the nerds out there): Run 'cyoa.py' using Python 3: `python3 cyoa.py`
+2) Flask Web App (preferred):
+- Install flask (if it's not already installed): `pip3 install flask`
+- Navigate into the flaskapp directory: `cd flaskapp`
+- Run 'cyoa_app.py': `python3 cyoa_app.py`
+- In a browser, navigate to port 5000: `http://localhost:5000`
+
 ## To compose games:
 Game data is written in JSON format and read from the first .json file seen in the `flaskapp/data` directory.  Use the `template.json` file in
  the `flaskapp/data` directory as a reference.
