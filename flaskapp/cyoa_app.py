@@ -6,7 +6,7 @@ app = Flask(__name__)  # create flask object
 
 
 def get_game_data_file_path():
-    file_path = path.join(path.abspath(path.curdir), '../data')
+    file_path = path.abspath('data')
     for file_name in listdir(file_path):
         if file_name.endswith('.json'):
             return file_path + '/' + file_name

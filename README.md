@@ -1,16 +1,14 @@
 # Python-based Choose Your Own Adventure (CYOA) Engine
-
 Ever wanted to make your own old-school choose your adventure game?  Maybe you read the R. L. Stine "Give Yourself
 Goosebumps" books. Or maybe you enjoyed playing "Zork" or "The Hitchhiker's Guide to the Galaxy."  My goal was to make
 a platform that made it easier for others to write their own CYOA game.  With the CYOA engine, I've tried my best to
 abstract as much as possible make it easier to compose games.
 
-# To compose games:
-Game data is written in JSON format and read from the .json file in the `data` directory.  Use the `template.json` file in
- the `data` directory as a guide.
+## To compose games:
+Game data is written in JSON format and read from the first .json file seen in the `flaskapp/data` directory.  Use the `template.json` file in
+ the `flaskapp/data` directory as a reference.
 
-The following attributes are required for each page:
-
+**The following attributes are required for each page:**
 - `"name"`: Unique name for for page.  Pages are connected (referenced) by these names.
 - `"title"`: Titles are what are displayed when a page is offered as a choice for the player to make (via "linked_pages").
 - `"body"`: The body is the main text of a page.  It's normally the long description.
@@ -19,7 +17,7 @@ The following attributes are required for each page:
 - `"linked_pages"`: A list of unique names (pages) that are choices for the player to make.  If pages are though of as
 nodes, these are the connected nodes.
 
-The following attributes are optional for pages:
+**The following attributes are optional for pages:**
 - `"change_health"`: If a page (choice) affects a players health, this attribute can increase or decrease health.
 - `"add_to_inventory"`: If you want to add an item to the players inventory, use this attribute.  Use "inventory_alt_page"
 to define what page to go to next after adding to inventory.
@@ -28,13 +26,15 @@ to define what page to go to next after removing from inventory.
 - `"check_in_inventory"`: Checks if a certain item is in a players inventory.  Use in conjunction with "inventory_alt_page"
 - `"inventory_alt_page"`: Use in conjunction with "check_in_inventory"; if item is in inventory, use this page.
 
-Misc:
-- `"starting_health"` (required): Defines the health amount when the game is started.
-- `"welcome_message"` (required): Defines welcome message at the start of the game.  It's printed only once at the beginning.
-- `"max_line_length"` (required): Sets the maximum length of each line that is printed during the game.  Otherwise, things look ugly.
+**The following 'book' attributes are required:**
+- `"starting_health"`: Defines the health amount when the game is started.
+- `"welcome_message"`: Defines welcome message at the start of the game.  It's printed only once at the beginning.
+- `"max_line_length"`: Sets the maximum length of each line that is printed during the game.  Otherwise, things look ugly.
+- `"about_author"` (can be empty): Displayed in the 'About' page of the flask version of the game.
+- `"author_website"` (can be empty): Displayed in the 'About' page of the flask version of the game.
 
-Tips:
-- Build out the world (make empty/placeholder pages) before adding details and descriptions.  This will help you better
+**Tips:**
+- Build out the world (make empty/placeholder pages) before adding detailed content and descriptions.  This will help you better
 visualize, plan, and structure your game.
 - Adding or removing something from inventory requires a separate 'page'/node be created.  Once the inventory page has
 been visited in-game, it will be removed from all linked pages.  This prevents the page from being re-visited.

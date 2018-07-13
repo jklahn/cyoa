@@ -1,5 +1,5 @@
 from json import load
-from os import listdir
+from os import listdir, path
 
 
 class Page(object):
@@ -167,9 +167,10 @@ class Book(object):
 
 
 def get_data_file_path():
-    for file in listdir('data/'):
+    file_path = path.abspath('flaskapp/data')
+    for file in listdir(file_path):
         if file.endswith('.json'):
-            return 'data/' + file
+            return file_path + "/" + file
 
     print("ERROR: Failed to find a '.json' game data file in the 'data' directory.")
 
