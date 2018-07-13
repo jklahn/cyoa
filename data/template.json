@@ -60,7 +60,7 @@
   {
     "name": "hallway_log",
     "title": "Hallway",
-	"body": "You enter the hallway still clutching the burning log.  The pain becomes unbearable as the fire creeps up your arm.  You drop the log.  It lands on the hardwood flooring can catches the floor on fire.  You try desperately to step on the fire to put it out, but this only enrages the flames.  You pass out from the pain and never wake up...",
+	"body": "You enter the hallway still clutching the burning log.  The pain becomes unbearable as the fire creeps up your arm.  You drop the log.  It lands on the hardwood flooring, setting it alight.  You try desperately to step on the fire to put it out, but this only enrages the flames.  You pass out from the pain and never wake up...",
     "short_description": "",
 	"prompt": "",
 	"linked_pages": [""],
@@ -233,5 +233,7 @@
 "title": "A Very Bloody Christmas",
 "starting_health": 90,
 "welcome_message": "\nWelcome to \"A Very Bloody Christmas\" - a choose your own adventure game.\n",
-"max_line_length": 80
+"max_line_length": 80,
+"about_author": "Josh Klahn likes to hack together web applications like one to get the practice.  Had he read the flask documentation instead searching stackoverflow whenever he got stuck, this web app might look better.\n  When Josh has free time, he likes to play with his two kids or go out for a round of disc golf.\n\nFor more about Josh, visit his website:\n",
+"author_website": "www.joshuklahn.com"
 }

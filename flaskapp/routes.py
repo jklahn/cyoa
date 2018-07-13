@@ -149,7 +149,7 @@ class Book(object):
             # health_message += ("<br/>Current Health: " + str(self.health))
 
         if self.health <= 0:  # Game Over if your health goes below 0
-            health_message = "<br/>Your health has dropped below 0.<br/>"
+            health_message = "<br/><br/>Your health has dropped below 0.<br/>"
 
         return health_message
 
@@ -312,34 +312,40 @@ def build_page_contents():
     return page_body, prompt, linked_pages
 
 
-if __name__ == '__main__':
-    @app.route('/')
-    def home():
-        return render_template('home.html', title=game_data["title"], welcome_message=game_data["welcome_message"])
+@app.route('/')
+def home():
+    return render_template('home.html', title=game_data["title"], welcome_message=game_data["welcome_message"])
 
-    @app.route('/about')
-    def about():
-        return render_template('about.html')
 
-    @app.route('/start')
-    def start():
-        restart()
+@app.route('/about')
+def about():
+    return render_template('about.html', about_the_author=game_data["about_author"],
+                           author_website=game_data["author_website"])
 
-        return render_template('start.html', title=book.current_page.title, page_body=book.current_page.body,
-                               prompt=book.current_page.prompt, linked_pages=get_current_linked_pages(),
-                               current_health=book.health)
 
-    @app.route('/start', methods=['POST'])
-    def start_post():
-        next_page = request.form.get('next-page')
-        book.nav_to_page(next_page)
+@app.route('/start')
+def start():
+    restart()
 
-        page_body, prompt, linked_pages = build_page_contents()
+    return render_template('start.html', title=book.current_page.title, page_body=book.current_page.body,
+                           prompt=book.current_page.prompt, linked_pages=get_current_linked_pages(),
+                           current_health=book.health)
 
-        book.current_page.visit_counter += 1  # increment the page visit counter
 
-        return render_template('start.html', title=book.current_page.title, page_body=page_body,
-                               prompt=prompt, linked_pages=linked_pages,
-                               current_health=book.health)
+@app.route('/start', methods=['POST'])
+def start_post():
+    next_page = request.form.get('next-page')
+    book.nav_to_page(next_page)
+
+    page_body, prompt, linked_pages = build_page_contents()
+
+    book.current_page.visit_counter += 1  # increment the page visit counter
+
+    return render_template('start.html', title=book.current_page.title, page_body=page_body,
+                           prompt=prompt, linked_pages=linked_pages,
+                           current_health=book.health)
+
+
+if __name__ == '__main__':  # I don't think this part is need if running the webapp on a legit webserver
 
     app.run(debug=True, use_reloader=True)  # start flask (render web pages)
