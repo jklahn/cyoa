@@ -34,6 +34,8 @@ to define what page to go to next after adding to inventory.
 to define what page to go to next after removing from inventory.
 - `"check_in_inventory"`: Checks if a certain item is in a players inventory.  Use in conjunction with "inventory_alt_page"
 - `"inventory_alt_page"`: Use in conjunction with "check_in_inventory"; if item is in inventory, use this page.
+- `"visits_allowed"`: The maximum amount of times a certain page can be visited.  Once the maximum is reached, it is removed
+from all linked pages.
 
 **The following 'book' attributes are required:**
 - `"starting_health"`: Defines the health amount when the game is started.

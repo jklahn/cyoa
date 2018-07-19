@@ -3,7 +3,7 @@
   {
     "name": "start",
     "title": "Living Room",
-	"body": "\"dashing through the snow...\"\n\"on a one horse open slay...\"\n\"over the fields we goooo...\"\n\"laughing all the way... MU HA HA!...\"\nYou groggily come-to with 'Jingle Bells' draining into your ears.  A blurry living room around you gradually comes into focus.  You're lying on a couch, facing a log fireplace.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.  You feel something cold and wet start to run down your forehead.  Wiping it away from your brow you discover it's blood.  That probably explains the splitting headache you have.",
+	"body": "\"dashing through the snow...\"\n\"on a one horse open slay...\"\n\"over the fields we goooo...\"\n\"laughing all the way... MU HA HA!...\"\n\nYou groggily come-to with 'Jingle Bells' draining into your ears.  A blurry living room around you gradually comes into focus.  You're lying on a couch, facing a log fireplace.  To your left is a hallway which leads to stairs.  To your right are two large windows.  As you sit up, you take a quick look behind yourself and see a kitchen.  You feel something cold and wet start to run down your forehead.  Wiping it away from your brow you discover it's blood.  That probably explains the splitting headache you have.",
     "short_description": "",
 	"prompt": "Where would you like to go to next?",
 	"linked_pages": ["hallway", "kitchen", "sleep", "grab_log"]
@@ -21,11 +21,12 @@
   {
     "name": "sleep",
     "title": "Back to sleep",
-	"body": " \"...dashing through the snow... on one horse open slay... over the fields we goooo... laughing all the way... HA HA HA!\" \nYou come-to with 'Jingle Bells' draining into your ears.  Is this song on repeat??  A blurry living room around you gradually comes into focus.  You feel a little better as your head doesn't hurt as much.  To your left is a hallway which leads to stairs.  To your right are two large windows.  You're facing a log fireplace.  As you sit up, you take a quick look behind yourself and see a kitchen.",
-    "short_description": "You are in the living room. To your left is a hallway.  Behind you is a kitchen.",
+	"body": " \"...dashing through the snow... on one horse open slay... over the fields we goooo... laughing all the way... HA HA HA!\" \n\nYou come-to with 'Jingle Bells' draining into your ears.  Is this song on repeat??  A blurry living room around you gradually comes into focus.  You feel a little better as your head doesn't hurt as much.  To your left is a hallway which leads to stairs.  To your right are two large windows.  You're facing a log fireplace.  As you sit up, you take a quick look behind yourself and see a kitchen.",
+    "short_description": "Siesta time again!\nBefore you know it you've come to again.  You still hear 'Jingle Bells' playing on repeat in the background.  To your left is a hallway.  Behind you is a kitchen.  In front of you is a log fireplace.",
 	"prompt": "Where would you like to go to next?",
 	"linked_pages": ["hallway", "kitchen", "grab_log"],
-	"change_health": 10
+	"change_health": 10,
+    "visits_allowed": 2
   },
   {
     "name": "grab_log",
@@ -96,10 +97,72 @@
   {
     "name": "kitchen",
     "title": "Kitchen",
-	"body": "Just a normal kitchen - albeit the scattered blood stains on walls and cabinets.  'What happened in here?  Looks like pig was butchered in here...' you think to yourself.\nAhead is what appears to be a bedroom.  To your left is a door that leads outside to a deck.  To your right is a hallway.  Behind you is the living room.",
-    "short_description": "You're back in the kitchen.  To your left is a door that leads outside to a deck.  To your right is a hallway.  Behind you is the living room.",
+	"body": "Just a normal kitchen - albeit the scattered blood stains on walls and cabinets.  'What happened in here?  Looks like pig was butchered in here...' you think to yourself.\nAhead is what appears to be a bedroom.  To your left is a door that leads outside to a deck.  To your right is a pantry and hallway.  Behind you is the living room.",
+    "short_description": "You're back in the kitchen.  Ahead of you is a bedroom.  To your left is a door that leads outside to a deck.  To your right is a hallway and pantry.  Behind you is the living room.",
     "prompt": "Where would you like to go to next?",
-	"linked_pages": ["living_room", "hallway", "downstairs_bedroom", "deck_door"]
+	"linked_pages": ["living_room", "hallway", "downstairs_bedroom", "deck_door", "kitchen_open_pantry"]
+  },
+  {
+    "name": "kitchen_open_pantry",
+    "title": "Open the pantry",
+	"body": "The pantry door opens with a long, loud creak.  The shelves are fully stocked cereals, canned goods, and various cooking ingredients.  A can of Hubs chocolate covered peanuts catches your eye.",
+    "short_description": "You walk into the open pantry.  That can of Hubs chocolate covered peanuts is calling your name again.",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["kitchen", "eat_peanuts_in_pantry"]
+  },
+  {
+    "name": "eat_peanuts_in_pantry",
+    "title": "Eat the peanuts",
+	"body": "You pop open the can of Hubs chocolate covered peanuts and delicious bites at your nose.  You grab a handful and shove them in your mouth.  \"Oh my god these are sooo good!\" you say to yourself as you contently chew.\"",
+    "short_description": "You walk into the open pantry.  That can of Hubs chocolate covered peanuts is calling your name again.",
+    "prompt": "What would you like to do next?",
+	"linked_pages": ["kitchen_peanut_allergy"],
+    "change_health": 20
+  },
+  {
+    "name": "kitchen_peanut_allergy",
+    "title": "Kitchen",
+	"body": "You're back in the kitchen.  Ahead of you is a bedroom.  To your left is a door that leads outside to a deck.  To your right is a hallway and pantry.  Behind you is the living room.  You're starting to not feel so well. You notice your face is swelling up a little bit.  Was it something you ate?",
+    "short_description": "",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["living_room_peanut_allergy", "hallway_room_peanut_allergy", "bedroom_peanut_allergy", "deck_door_peanut_allergy"],
+    "change_health": -10
+  },
+  {
+    "name": "deck_door_peanut_allergy",
+    "title": "Deck Door",
+	"body": "You jimmy the door for the deck, but it's jammed.  All of a sudden you're feeling quite flushed.  Your skin is itching - everywhere.  Each breath seems a little harder to take.  You dizzily stumble to the ground and begin vommitting in between labored breaths. \"I have a peanut alergy...\" unforunately this realization has come too late.  You pass out in your vomit and never regain consciousness.",
+    "short_description": "",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["living_room", "hallway", "downstairs_bedroom", "deck_door", "kitchen_open_pantry"],
+    "change_health": -100
+  },
+  {
+    "name": "bedroom_peanut_allergy",
+    "title": "Bedroom",
+	"body": "You enter the bedroom feeling quite flushed.  Your skin is itching - everywhere.  Each breath seems a little harder to take.  You dizzily stumble to the ground and begin to vommitting in between labored breaths. \"I have a peanut alergy...\" unforunately this realization has come too late.  You pass out in your vomit and never regain consciousness.",
+    "short_description": "",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["living_room", "hallway", "downstairs_bedroom", "deck_door", "kitchen_open_pantry"],
+    "change_health": -100
+  },
+  {
+    "name": "living_room_peanut_allergy",
+    "title": "Living Room",
+	"body": "You enter the living room feeling quite flushed.  Your skin is itching - everywhere.  Each breath seems a little harder to take.  You dizzily stumble to the ground and begin vommitting in between labored breaths. \"I have a peanut alergy...\" unforunately this realization has come too late.  You pass out in your vomit and never regain consciousness.",
+    "short_description": "",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["living_room", "hallway", "downstairs_bedroom", "deck_door", "kitchen_open_pantry"],
+    "change_health": -100
+  },
+  {
+    "name": "hallway_room_peanut_allergy",
+    "title": "Hallway",
+	"body": "You enter the hallway feeling quite flushed.  Your skin is itching - everywhere.  Each breath seems a little harder to take.  You dizzily stumble to the ground and begin vommitting in between labored breaths. \"I have a peanut alergy...\" unforunately this realization has come too late.  You pass out in your vomit and never regain consciousness.",
+    "short_description": "",
+    "prompt": "Where would you like to go to next?",
+	"linked_pages": ["living_room", "hallway", "downstairs_bedroom", "deck_door", "kitchen_open_pantry"],
+    "change_health": -100
   },
   {
     "name": "downstairs_bedroom",
@@ -122,8 +185,8 @@
   {
     "name": "up_stairs",
     "title": "Up the stairs",
-	"body": "You slowly make your way up the stairs and notice a trail of blood as you go.  You appear to reach a landing.  Everything is dark.",
-    "short_description": "You slowly make your way up the stairs and notice a trail of blood as you go.  You reach a landing.  Everything is dark.",
+	"body": "You slowly make your way up the stairs and notice a trail of dark red blood as you go and being careful not to step in it.  You appear to reach a landing.  Everything is dark.",
+    "short_description": "You slowly make your way up the stairs dodging the trail of blood as you go.  You reach the landing.  Everything is dark.",
     "prompt": "Where would you like to go to next?",
 	"linked_pages": ["down_stairs", "explore_landing"]
   },
@@ -138,7 +201,7 @@
   {
     "name": "explore_landing",
     "title": "Explore the landing",
-	"body": "You start to feel your way around the dark.  You decide to walk straight ahead until you feel a wall.  Then, in a counter-clockwise direction, you walk while feeling the wall until you come to a door frame.  You gracefully slide through the door and then trip over something on the floor and fall into a pool of something cold and wet.  The liquid splashes into your open mouth and you instantly know it's blood.  Panicked, you scramble and slip to your feet and break out into a run toward the landing.  Only, you're not running toward the landing.  You hit the railing of the staircase full speed and flip over the bar.  You fall and break your neck.",
+	"body": "You start to feel your way around the dark.  You decide to walk straight ahead until you feel a wall.  Then, in a counter-clockwise direction, you walk while feeling the wall until you come to a door frame.  You gracefully slide through the door and then trip over something on the floor and fall into a pool of something cold and wet.  The liquid splashes into your open mouth and you instantly know it's familiar salty, bitter taste of blood.  Panicked, you scramble and slip to your feet - breaking into a sprint toward the landing.  Only, you're not running toward the landing.  You hit the railing of the staircase full speed and flip over the bar.  You fall and break your neck.",
     "short_description": "",
     "prompt": "",
 	"linked_pages": [""],
@@ -149,8 +212,8 @@
   {
     "name": "landing_flashlight",
     "title": "Landing",
-	"body": "You turn on the flashing and start to paint the landing area.  It reveals a large master bedroom on the left. In front of you is a hallway that leads to another room.  To your immediate right is another bedroom.  It appears to be a boy's bedroom judging by the decorations",
-    "short_description": "You are in the landing area.  To the left is a large master bedroom.  In front of you is a hallway that leads to another room.  To your immediate right is a boy's bedroom",
+	"body": "You turn on the flashing and start to paint the landing area.  It reveals a large master bedroom on the left. In front of you is a hallway that leads to another room.  To your immediate right is another bedroom.  It appears to be a boy's bedroom judging by the decorations.",
+    "short_description": "You are in the landing area.  To the left is a large master bedroom.  In front of you is a hallway that leads to another room.  To your immediate right is a boy's bedroom.",
     "prompt": "Where would you like to go to next?",
 	"linked_pages": ["master_bedroom", "upstairs_hallway", "boy_bedroom", "down_stairs"]
   },
@@ -235,5 +298,5 @@
 "welcome_message": "\nWelcome to \"A Very Bloody Christmas\" - a choose your own adventure game.\n",
 "max_line_length": 80,
 "about_author": "Josh Klahn likes to hack together web applications like one to get the practice.  Had he read the flask documentation instead searching stackoverflow whenever he got stuck, this web app might look better.\n  When Josh has free time, he likes to play with his two kids or go out for a round of disc golf.\n\nFor more about Josh, visit his website:\n",
-"author_website": "www.joshuklahn.com"
+"author_website": "https://joshuklahn.com/"
 }

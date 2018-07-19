@@ -11,12 +11,12 @@
           <nav>
               <ul class="menu">
                   <li>Health: {{ current_health }}</li>
-                <li><a href="{{ url_for('home') }}">Restart</a></li>
+                  <li><a href="{{ url_for('home') }}">Restart</a></li>
               </ul>
           </nav>
       </div>
   </header>
-    <div class="container">
+    <div class="page-holder">
         {% block content %}
         {% endblock %}
     </div>

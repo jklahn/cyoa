@@ -1,14 +1,14 @@
 {% extends "page.html" %}
 {% block content %}
-  <div class="jumbo">
+  <div class="page">
     {% autoescape false %}
-    <h4>{{ page_body }}</h4>
-      <h4>{{ prompt }}</h4>
+      {{ page_body }}
+      {{ prompt }}
     {% endautoescape %}
 
       {% for page_link, page_title in linked_pages.items() %}
       <form method="post" id="form">
-        <div >
+        <div>
           <button class="page-button" type="submit" name="next-page" value="{{ page_link }}">{{ page_title }}</button>
         </div>
       </form>

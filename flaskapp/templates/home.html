@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
-  <div class="jumbo">
+  <div class="page">
     {% autoescape false %}
-    <h1>{{ welcome_message }}</h1>
+    {{ welcome_message }}
     {% endautoescape %}
-    <div class="buttonholder">
-      <a class="startbutton" href="{{ url_for('start') }}" title="Start the game">START</a>
+    <div>
+      <a class="page-button" href="{{ url_for('start') }}" title="Start the game">START</a>
     </div>
   </div>
 {% endblock %}

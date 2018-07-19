@@ -10,16 +10,17 @@ body {
  */
 
 header {
-  background-color: #2B2B2B;
-  height: 35px;
-  width: 100%;
+  background-color: black;
+  height: 5vw;
+  width: 100vw;
   opacity: .9;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 header h1.logo {
   margin: 0;
-  font-size: 1.7em;
+  margin-left: 35px;
+  font-size: calc(14px + 1vw);
   color: #fff;
   text-transform: uppercase;
   float: left;
@@ -35,8 +36,10 @@ header h1.logo:hover {
  */
 
 .container {
-  width: 940px;
-  margin: 0 auto;
+  width: 95vw;
+  height: 50vh
+  margin: auto;
+  font-family: monospace;
 }
 
 /*
@@ -46,7 +49,8 @@ header h1.logo:hover {
 .menu {
   color: white;
   float: right;
-  margin-top: 8px;
+  margin: 0;
+  font-size: calc(14px + 1vw);
 }
 
 .menu li {
@@ -58,6 +62,8 @@ header h1.logo:hover {
 }
 
 .menu li a {
+  border-radius: 2px;
+  padding: 3px 3px 3px 3px;
   color: #999;
   text-decoration: none;
 }
@@ -106,7 +112,6 @@ h2 {
 }
 
 h3 {
-  font-size: 1.7em;
   font-weight: 100;
   margin-top: 30px;
   text-align: center;
@@ -114,16 +119,32 @@ h3 {
   color: #999;
 }
 
+div.page {
+  height: 85vh;
+  width: 90vw;
+  margin: auto;
+  font-weight: normal;
+  font-family: monospace;
+  font-size: calc(12px + 1vw);
+  padding: 30px 30px 30px 30px;
+  color: #41FF00;
+  background-color: black;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
 .page-button {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 1.5em;
+  font-family: monospace;
+  font-size: calc(12px + 1vw);
+  padding: 10px 10px 30px 10px;
+  color: #41FF00;
+  background-color: black;
   margin-top: 10px;
   text-align: center;
-  letter-spacing: -2px;
+  border-style: dotted;
   border-radius: 4px;
-  background-color: #999;
-  border: none;
-  color: white;
+  border: solid #000;
   padding: 5px 10px 5px 10px;
   text-align: center;
   text-decoration: none;
@@ -131,5 +152,15 @@ h3 {
 }
 
 .page-button:hover {
+  border-color: #41FF00;
+}
+
+body.page {
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #444;
+}
+
+div.page-holder {
   background-color: black;
 }

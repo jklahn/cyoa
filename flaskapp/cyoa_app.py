@@ -24,9 +24,10 @@ class Page(object):
         self.title = page["title"]
         self.body = wrap_text(page["body"])
         self.prompt = wrap_text(page["prompt"])
-        self.short_description = page["short_description"]
+        self.short_description = wrap_text(page["short_description"])
         self.linked_pages = page["linked_pages"]
         self.visit_counter = 0
+        self.visits_allowed = page.get("visits_allowed")
         self.change_health = page.get("change_health")  # Get the health change for the page if it exists
         self.add_to_inventory = page.get("add_to_inventory")
         self.remove_from_inventory = page.get("remove_from_inventory")
@@ -136,7 +137,7 @@ class Book(object):
         if self.current_page.change_health:  # add or subtract health
             health_message += "<br/><br/>"
             if self.current_page.change_health > 0:
-                health_message += ("+" + str(self.current_page.change_health) + " health<br/>")
+                health_message += ("+" + str(self.current_page.change_health) + " health<br/><br/>")
 
             else:
                 health_message += (str(self.current_page.change_health) + " health<br/><br/>")
@@ -174,23 +175,8 @@ class Book(object):
                 page.linked_pages.remove(page_name)
 
 
-def wrap_text(text, max_line_length=120):
-    formatted_text = ""
-    for string in text.split("\n"):
-        if len(string) > max_line_length:  # if the string is greater than the max allowed per line
-            line = ""
-            for word in string.split():  # split string into words if greater than max
-                if len(line) + len(word) > max_line_length:
-                    formatted_text += "<br/>" + line
-                    line = "" + word + " "
-                else:
-                    line += word + " "
-
-            formatted_text += "<br/>" + line
-        else:
-            string += "<br/>"  # add the new line back
-            formatted_text += string
-
+def wrap_text(text, max_line_length=80):
+    formatted_text = text.replace("\n", "<br/>")
     return formatted_text
 
 
@@ -340,6 +326,11 @@ def start_post():
     page_body, prompt, linked_pages = build_page_contents()
 
     book.current_page.visit_counter += 1  # increment the page visit counter
+
+    if book.current_page.visits_allowed:
+        # remove the page from the book so it can't be visited again if max visits reached for the page
+        if book.current_page.visit_counter >= book.current_page.visits_allowed:
+            book.remove_page_from_all_linked_pages(book.current_page.name)
 
     return render_template('start.html', title=book.current_page.title, page_body=page_body,
                            prompt=prompt, linked_pages=linked_pages,
