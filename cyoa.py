@@ -11,6 +11,7 @@ class Page(object):
         self.short_description = page["short_description"]
         self.linked_pages = page["linked_pages"]
         self.visit_counter = 0
+        self.visits_allowed = page.get("visits_allowed")
         self.change_health = page.get("change_health")  # Get the health change for the page if it exists
         self.add_to_inventory = page.get("add_to_inventory")
         self.remove_from_inventory = page.get("remove_from_inventory")
@@ -111,6 +112,11 @@ class Book(object):
     def read_prompt(self):
         print(self.current_page.prompt)
         self.current_page.visit_counter += 1
+
+        if self.current_page.visits_allowed:
+            # remove the page from the book so it can't be visited again if max visits reached for the page
+            if self.current_page.visit_counter >= self.current_page.visits_allowed:
+                self.remove_page_from_all_linked_pages(self.current_page.name)
 
         for index, link in enumerate(self.current_page.linked_pages):
             print(self.pages[link].title + " [" + str(index + 1) + "]")
